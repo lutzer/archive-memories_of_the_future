@@ -1,0 +1,57 @@
+<div class="noscroll">
+	<div id="page-1" class="subpage bottom transition">
+		<div class="subpage-container middle-parent full-page">
+			<div class="middle">
+				<h2>Take Picture</h2>
+				<div class="center">
+					<a
+						class="waves-effect waves-circle waves-dark button-round-light button-big"
+						id="takePicture"><i class="mdi-image-camera-alt icon"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page-2" class="subpage bottom transition ">
+		<div class="subpage-container middle-parent full-page">
+			<div class="middle">
+				<h2>Checking Location</h2>
+				<div id="progressBar" class="progress">
+					<div class="indeterminate"></div>
+				</div>
+				<div id="done"></div>
+			</div>
+		</div>
+	</div>
+	<div id="page-3" class="subpage bottom transition">
+		<div class="subpage-container middle-parent full-page">
+			<div class="middle">
+				<h2>Choose category</h2>
+				<ul class="categories">
+					<% for (i=0; i<tasks.length; i++) { %>
+					<li>
+						<input class="categoryButton form-radio" name="group1" type="radio" id="radioButton<%= i %>" data-task-id="<%= i %>"/> 
+						<label class="categoryLabel" for="radioButton<%= i %>"><%= tasks.at(i).get('name') %></label>
+					</li>
+					<% } %>
+				</ul> 
+			</div>
+		</div>
+	</div>
+	<div id="page-4" class="subpage bottom transition">
+		<div class="subpage-container middle-parent full-page">
+			<div class="middle">
+				<h2>Picture Notes</h2>
+				<div class="row">
+					<div class="input-field">
+						<i class="mdi-editor-mode-edit prefix form-icon"></i>
+						<textarea id="note" class="materialize-textarea form-input" placeholder="Your notes for this picture"></textarea>
+					</div>
+				</div>
+				<div class="center">
+					<a class="waves-effect waves-circle waves-dark button-round-light button-big" id="doneButton"><i class="mdi-action-done icon"></i></a>
+				</div>
+				<div class="middle"></div>
+			</div>
+		</div>
+	</div>
+</div>

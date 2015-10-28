@@ -1,0 +1,123 @@
+Node version: v0.10.36
+
+Cordova version: 4.2.0
+
+Config.xml file: 
+
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="de.drl.pinpoint2" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PinPoint</name>
+    <description>
+        nt
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    	Design Research Lab UDK BERLIN
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="Orientation" value="portrait" />
+     <platform name="android">
+        <icon src="res/icon.png" density="ldpi" />
+        <icon src="res/icon.png" density="mdpi" />
+        <icon src="res/icon.png" density="hdpi" />
+        <icon src="res/icon.png" density="xhdpi" />
+
+       	<splash src="res/splash.9.png" density="port-hdpi"/>
+    	<splash src="res/splash.9.png" density="port-ldpi"/>
+   		<splash src="res/splash.9.png" density="port-mdpi"/>
+   		<splash src="res/splash.9.png" density="port-xhdpi"/>
+     </platform>
+     <preference name="SplashScreenDelay" value="5000" />
+     <preference name="SplashScreen" value="screen" />
+</widget>
+
+
+Plugins: 
+
+org.apache.cordova.file,org.apache.cordova.file-transfer,org.apache.cordova.geolocation,org.apache.cordova.media-capture
+
+Android platform:
+
+Available Android targets:
+----------
+id: 1 or "android-10"
+     Name: Android 2.3.3
+     Type: Platform
+     API level: 10
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WVGA800 (default), WVGA854
+ Tag/ABIs : default/armeabi
+----------
+id: 2 or "android-19"
+     Name: Android 4.4.2
+     Type: Platform
+     API level: 19
+     Revision: 4
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+----------
+id: 3 or "android-21"
+     Name: Android 5.0.1
+     Type: Platform
+     API level: 21
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in, AndroidWearRound, AndroidWearSquare, AndroidWearRound, AndroidWearSquare
+ Tag/ABIs : android-tv/armeabi-v7a, android-tv/x86, android-wear/armeabi-v7a, android-wear/x86, default/armeabi-v7a, default/x86, default/x86_64
+----------
+id: 4 or "android-22"
+     Name: Android 5.1.1
+     Type: Platform
+     API level: 22
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : android-tv/armeabi-v7a, android-tv/x86, default/armeabi-v7a, default/x86, default/x86_64
+----------
+id: 5 or "Google Inc.:Google APIs:10"
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Revision: 2
+     Description: Android + Google APIs
+     Based on Android 2.3.3 (API level 10)
+     Libraries:
+      * com.android.future.usb.accessory (usb.jar)
+          API for USB Accessories
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WVGA800 (default), WVGA854
+ Tag/ABIs : default/armeabi
+----------
+id: 6 or "Google Inc.:Google APIs:21"
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Revision: 1
+     Description: Android + Google APIs
+     Based on Android 5.0.1 (API level 21)
+     Libraries:
+      * com.google.android.media.effects (effects.jar)
+          Collection of video effects
+      * com.android.future.usb.accessory (usb.jar)
+          API for USB Accessories
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in, AndroidWearRound, AndroidWearSquare, AndroidWearRound, AndroidWearSquare
+ Tag/ABIs : google_apis/x86
+----------
+id: 7 or "Google Inc.:Google APIs:22"
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Revision: 1
+     Description: Android + Google APIs
+     Based on Android 5.1.1 (API level 22)
+     Libraries:
+      * com.google.android.media.effects (effects.jar)
+          Collection of video effects
+      * com.android.future.usb.accessory (usb.jar)
+          API for USB Accessories
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+

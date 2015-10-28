@@ -1,0 +1,15 @@
+<div class="list-item">
+	<div class="list-item-button middle-parent">
+		<div class="middle">
+			<a class="waves-effect waves-circle waves-light button-round red" id="delete"><i class="mdi-action-delete icon"></i></a>
+			<a class="waves-effect waves-circle waves-light button-round" id="upload"><i class="mdi-file-cloud-upload icon"></i></a>
+			
+			<% if (!completed) { %>
+			<a class="waves-effect waves-circle waves-light button-round" id="resume"><i class="mdi-navigation-chevron-right icon"></i></a>
+			<% } %>
+			</div>
+	</div>
+	<h3><%= explorer %></h3>
+	<p><%= date %></p>
+	
+</div>
