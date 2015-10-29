@@ -14,6 +14,7 @@ define([
 			this.taskId = options.taskId === undefined ? null : options.taskId;
 			
 			this.picture = false;
+			this.audio = false;
 			this.location = false;
 			
 			// init with subpage 0
@@ -29,6 +30,7 @@ define([
 			"click .categoryButton" : "onCategoryButtonPress",
 			"click #takePicture" : "onTakePictureButtonPress",
 			"click #doneButton" : "onDoneButtonPress",
+			"click #recordAudio" : "onRecordAudioButtonPress",
 			"webkitTransitionEnd .subpage" : 'onTransitionEnd',
 			"transitionend .subpage" : 'onTransitionEnd'
 		},
@@ -36,7 +38,10 @@ define([
 		onRender: function() {
 			var self = this;
 			setTimeout(function() {
-				self.nextSubpage();
+				if (self.taskId != null) //skip page if there is allready a task id defined
+					self.nextSubpage(1);
+				else
+					self.nextSubpage();
 			},100);
 			this.transitionCallback = function(event) {
 				self.trigger('transition:show');
@@ -76,15 +81,47 @@ define([
 		
 		//shows next Subpage
 		nextSubpage: function(skip) {
-			skip = skip ? skip : 1;
+			skip = skip ? skip : 0;
 			
 			if (this.page > 0)
 				this.$('#page-'+this.page).addClass("top");
-			this.page += skip;
+			this.page += skip + 1;
 			this.$('#page-'+this.page).removeClass('bottom');
 		},
-		
+
 		// first page
+		onCategoryButtonPress : function(event) {
+			this.taskId = event.target.dataset.taskId;
+			
+			//animate
+			var self = this;
+			setTimeout(function() {
+				self.nextSubpage();
+			},300);
+		},
+
+		//second page
+		onRecordAudioButtonPress: function() {
+			var self = this;
+
+			var onSuccess = function(audioPath) {
+	    		self.audio = audioPath[0].fullPath;
+	    		self.nextSubpage();
+	    	};
+
+	    	var onFail = function() {
+	    		// do nothing, user probably canceled camera app
+	    	};
+	    	
+	    	//open camera app
+	    	if (window.isDesktop) {
+	    		self.onLocationCheck();
+	    	} else
+	    		navigator.device.capture.captureAudio(onSuccess, onFail, {
+	    			duration: 300 //maximal 5 minutes audio recording
+	    		});
+		},
+	
 		onTakePictureButtonPress: function() {
 			var self = this;
 
@@ -118,10 +155,7 @@ define([
 					self.$('#done').html("Location found.");
 					
 					setTimeout(function() {
-						if (self.taskId != null) //skip page if there is allready a task id defined
-							self.nextSubpage(2);
-						else
-							self.nextSubpage();
+						self.nextSubpage();
 					},1000);
 				},
 				error: function() {
@@ -130,24 +164,10 @@ define([
 					self.$('#done').html("Could not fetch location. Is GPS enabled?");
 					
 					setTimeout(function() {
-						if (self.taskId != null) //skip page if there is allready a task id defined
-							self.nextSubpage(2);
-						else
-							self.nextSubpage();
+						self.nextSubpage();
 					},3000);
 				}
     		});
-		},
-		
-		// third page
-		onCategoryButtonPress : function(event) {
-			this.taskId = event.target.dataset.taskId;
-			
-			//animate
-			var self = this;
-			setTimeout(function() {
-				self.nextSubpage();
-			},400);
 		},
 		
 		// fourth page
@@ -155,7 +175,12 @@ define([
 			
 			// save results
 			var task  = this.model.get('tasks').at(this.taskId);
-			task.setResult(this.picture,this.$("#note").val(),this.location);
+			task.setResult({
+				picture: this.picture,
+				recording: this.audio,
+				note: this.$("#note").val(),
+				location: this.location,
+			});
 			
 			// update model
 			this.model.sync("update", this.model);

@@ -6,7 +6,7 @@ define([], function(){
 			 */
 			
 			//"web_service_url": "data/",
-			"web_service_url": "http://pinpoint.community-infrastructuring.org/map/api",
+			"web_service_url": "http://farseer.de/pinpoint/api",
 			"settings_web_timeout" : 2000,
 			"max_file_size" : 25 * 1024 * 1024, //in bytes
 			

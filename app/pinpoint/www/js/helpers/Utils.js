@@ -11,32 +11,12 @@ define([
 		    };
 		},
 		
-		// check if a file exists
-		fileExists: function(uri,callback) {
-			
-			//window.resolveLocalFileSystemURI(uri,exists,notExists);
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-				fileSystem.root.getFile(uri, { create: false }, exists, notExists);
-			},notExists);
-			
-			function exists() {
-				callback(true);
-			};
-			
-			function notExists() {
-				callback(false);
-			};
-		},
-		
 		getFileInfo: function(uri,callback) {
-			
-			var path = uri.replace(/^file:/, '');
-			
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-				fileSystem.root.getFile(path, { create: false }, exists, notExists);
-			},notExists);
+
+			window.resolveLocalFileSystemURL(uri, exists, notExists);
 			
 			function exists(fileEntry) {
+
 				fileEntry.getMetadata(function(metaData) {
 					callback(true,metaData);
 				},notExists);

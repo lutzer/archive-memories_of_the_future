@@ -1,0 +1,24 @@
+<div class="image">
+<% if (imagePath) { %>
+	<a href="<%= imagePath %>" target="_blank"><img id="img" src="<%= imagePath %>"></a>
+<% } else { %>
+	<p>No image found</p>
+<% } %>
+</div>
+<% if (audioPath) { %>
+	<div class="text color-<%= task_id %> light">
+		<audio src="<%= audioPath %>" controls>
+	</div>
+<% } %>
+<div class="text color-<%= task_id %> light">
+	<h2><%= task.name %></h2>
+	<div class="right">
+		<%= explorer %>
+	</div>
+	<p><%= note %></p>
+	<div class="right">
+		<a class="waves-effect waves-circle waves-light button-round-light button-normal" id="annotateButton">
+			<i class="mdi-file-attachment icon"></i>
+		</a>
+	</div>
+</div>

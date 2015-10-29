@@ -1,0 +1,87 @@
+{
+  "explorer": "Testen wirs mal\"\"\\\"älü1´30^",
+  "completed": false,
+  "submitted": false,
+  "time": 1423175545931,
+  "exploration_id": "1",
+  "exploration_name": "Mehringplatz",
+  "briefing": "Please take 9 pictures regarding the three categories: Like, Dislike, Change.",
+  "description": "Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum",
+  "tasks": [
+    {
+      "name": "Like",
+      "text": "Take 3 pictures of places that you dislike. Mark the pictures with the saw.",
+      "action": "picture",
+      "number": "3",
+      "completed": 2,
+      "results": [
+        {
+          "file": "none",
+          "note": "Und ne andere",
+          "type": "picture",
+          "location": {
+            "longitude": 13.4475069,
+            "latitude": 52.4779139,
+            "gpstime": 1423175607619,
+            "heading": null,
+            "accuracy": 30
+          }
+        },
+        {
+          "file": "none",
+          "note": "",
+          "type": "picture",
+          "location": {
+            "longitude": 13.4475237,
+            "latitude": 52.4779426,
+            "gpstime": 1423176091100,
+            "heading": null,
+            "accuracy": 27
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dislike",
+      "text": "Take 3 pictures of places that you like. Mark the pictures with the necklace.",
+      "action": "picture",
+      "number": "3",
+      "completed": 2,
+      "results": [
+        {
+          "file": "none",
+          "note": "Und die note\"§$§\"=??!\"§3.sc-13\ndöksf\ndsöfösdf\n-sdfsdf-\ndsf-fds-\n-dfssdf",
+          "type": "picture",
+          "location": {
+            "longitude": 13.4474955,
+            "latitude": 52.477935599999995,
+            "gpstime": 1423175574589,
+            "heading": null,
+            "accuracy": 30
+          }
+        },
+        {
+          "file": "none",
+          "note": "Noch ne note",
+          "type": "picture",
+          "location": {
+            "longitude": 13.4474955,
+            "latitude": 52.477935599999995,
+            "gpstime": 1423175596279,
+            "heading": null,
+            "accuracy": 30
+          }
+        }
+      ]
+    },
+    {
+      "name": "Change",
+      "text": "Take 3 pictures of places that you want to change. Mark the pictures with the wand.",
+      "action": "picture",
+      "number": "3",
+      "completed": 0,
+      "results": []
+    }
+  ],
+  "id": "1c3315bd-0cf8-688b-f14b-4cfc3eaa7e3a"
+}

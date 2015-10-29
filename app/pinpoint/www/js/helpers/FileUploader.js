@@ -28,6 +28,7 @@ define([
 				
 				// first check if file is ok
 				self.checkFile(arr[fileIndex].uri, function(result) {
+
 					if (result) {
 						self.uploadFile(arr[fileIndex],uploadAddress, {
 							success: function() {
@@ -84,7 +85,9 @@ define([
 		
 		//checks if file exists and file size is not too big
 		checkFile: function(file,callback) {
+
 			Utils.getFileInfo(file,function(exists,fileData) {
+
 				if (exists) {
 					if (fileData.size < Constants['max_file_size']) {
 						callback(true)

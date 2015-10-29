@@ -7,11 +7,12 @@ define([
 	var ResultModel = Backbone.Model.extend({
 		
 		defaults: {
-			file: false, 
 			note: "", 
-			type: "picture",
+			action: "none",
 			location: false,
 			time: 0,
+			picture: false,
+			recording: false
 		},
 		
 		initialize: function() {

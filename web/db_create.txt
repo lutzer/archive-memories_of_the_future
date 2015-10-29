@@ -1,0 +1,37 @@
+CREATE TABLE pp_explorations (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50),
+  `tasks` text,
+  `location` text,
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE pp_records (
+  `id` varchar(36) NOT NULL,
+  `exploration_id` int(11) DEFAULT NULL,
+  `explorer` varchar(50) DEFAULT NULL,
+  `tasks` text,
+  `time` int(15) DEFAULT '0',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `visible` tinyint(1) DEFAULT '1',
+  PRIMARY KEY `id` (`id`),
+  FOREIGN KEY (exploration_id) REFERENCES pp_explorations(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE pp_results (
+  `id` varchar(36) NOT NULL,
+  `record_id` varchar(36) NOT NULL,
+  `task_id` int(11) DEFAULT NULL,
+  `note` text,
+  `picture` varchar(50) DEFAULT NULL,
+  `recording` varchar(50) DEFAULT NULL,
+  `action` varchar(50) DEFAULT NULL,
+  `location` text,
+  `time` int(15) DEFAULT '0',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `visible` tinyint(1) DEFAULT '1',
+  PRIMARY KEY `id` (`id`),
+  FOREIGN KEY (record_id) REFERENCES pp_records(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

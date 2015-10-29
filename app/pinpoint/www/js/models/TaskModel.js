@@ -10,16 +10,18 @@ define([
 		defaults: {
 			completed : 0,
 			number: 0,
+			action: 'none',
 			results : []
 		},
 	
-		setResult: function(picture, note, location) {
+		setResult: function(data) {
 			var self = this;
 			var result = new ResultModel({
-				file: picture, 
-				note: note, 
-				type: "picture",
-				location: location
+				picture: data.picture, 
+				recording: data.recording,
+				note: data.note, 
+				location: data.location,
+				action: this.get('action')
 			});
 			//console.log(result);
 			this.get('results').push(result.toJSON());

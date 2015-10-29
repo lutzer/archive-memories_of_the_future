@@ -17,7 +17,7 @@ define([
 			var self = this;
 			
 			request = $.ajax({
-				url: constants['web_service_url']+"/explorations/",
+				url: constants['web_service_url']+"/explorations",
 				type: "get",
 				dataType: "json",
 				timeout: constants['settings_web_timeout'],

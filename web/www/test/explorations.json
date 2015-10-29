@@ -1,0 +1,110 @@
+{
+	"explorations": [
+		{
+			"id": "1",
+			"name": "Mehringplatz",
+			"description": "Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum",
+			"briefing": "Please take 9 pictures regarding the three categories: Like, Dislike, Change.",
+			"tasks": [
+				{
+					"name": "Like",
+					"text": "Take 3 pictures of places that you dislike. Mark the pictures with the saw.",
+					"action": "picture",
+					"number": "3"
+				},
+				{
+					"name": "Dislike",
+					"text": "Take 3 pictures of places that you like. Mark the pictures with the necklace.",
+					"action": "picture",
+					"number": "3"
+				},
+				{
+					"name": "Change",
+					"text": "Take 3 pictures of places that you want to change. Mark the pictures with the wand.",
+					"action": "picture",
+					"number": "3"
+				}
+			]
+		},
+		{
+			"id": "2",
+			"name": "Test",
+			"description": "Lorem ipsum",
+			"briefing": "Please take some pictures",
+			"tasks": [
+				{
+					"name": "Like",
+					"text": "Take 8 pictures of anything",
+					"action": "picture",
+					"number": "8"
+				},
+				{
+					"name": "Disike",
+					"text": "Take 2 pictures of something else",
+					"action": "picture",
+					"number": "2"
+				}
+			]
+		},
+		{
+			"id": "3",
+			"name": "Test",
+			"description": "There are two ways a collapsible can behave. It can either allow multiple sections to stay open, or it can only allow one section to stay open at a time, which is called an accordion. See below for a demo of each type",
+			"briefing": "Please take some pictures",
+			"tasks": [
+				{
+					"name": "Like",
+					"text": "Take 8 pictures of anything",
+					"action": "picture",
+					"number": "8"
+				},
+				{
+					"name": "Disike",
+					"text": "Take 2 pictures of something else",
+					"action": "picture",
+					"number": "2"
+				}
+			]
+		},
+		{
+			"id": "4",
+			"name": "Test",
+			"description": "We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.",
+			"briefing": "Please take some pictures",
+			"tasks": [
+				{
+					"name": "Like",
+					"text": "Take 8 pictures of anything",
+					"action": "picture",
+					"number": "8"
+				},
+				{
+					"name": "Disike",
+					"text": "Take 2 pictures of something else",
+					"action": "picture",
+					"number": "2"
+				}
+			]
+		},
+		{
+			"id": "5",
+			"name": "Test",
+			"description": "Lorem ipsum",
+			"briefing": "Please take some pictures",
+			"tasks": [
+				{
+					"name": "Like",
+					"text": "Take 8 pictures of anything",
+					"action": "picture",
+					"number": "1"
+				},
+				{
+					"name": "Disike",
+					"text": "Take 2 pictures of something else",
+					"action": "picture",
+					"number": "2"
+				}
+			]
+		}
+	]
+}

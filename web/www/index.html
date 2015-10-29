@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>PinPointing</title>
+		<link href="leaflet/leaflet.css" rel="stylesheet">
+		<link href="leaflet/markercluster.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+		<link href="css/style.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        
+	</head>
+	<body role='document'>
+    
+	<div id="container"></div>
+	<div id="modal-container"></div>
+	<script type="text/javascript" src="js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="leaflet/leaflet.js"></script>
+	<script type="text/javascript" src="leaflet/leaflet.markercluster.js"></script>
+   	<script data-main="js/main" src="js/libs/require.js"></script>
+   	<script type="text/javascript">
+   		define('jquery', [], function() {
+		    return jQuery;
+		});
+   	</script>
+		
+	</body>
+</html>

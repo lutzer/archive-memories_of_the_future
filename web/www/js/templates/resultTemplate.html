@@ -1,0 +1,29 @@
+<div class="result-item">
+	<div class="image">
+	<% if (imagePath) { %>
+		<a href="<%= imagePath %>" target="_blank"><img id="img" src="<%= imagePath %>"></a>
+	<% } else { %>
+		<p>No image found</p>
+	<% } %>
+	</div>
+	<% if (audioPath) { %>
+		<div class="text color-<%= task_id %> light">
+			<audio src="<%= audioPath %>" controls>
+		</div>
+	<% } %>
+	<div class="text color-<%= task_id %> light">
+	
+		<h2><%= task.name %></h2>
+		<div class="right">
+			<%= explorer %>
+		</div>
+		<p><%= note %></p>
+	</div>
+	<div class="top-button">
+		<a
+			class="waves-effect waves-circle waves-light button-round-light button-normal"
+			id="closeButton"><i class="mdi-navigation-close icon"></i></a>
+	</div>
+</div>
+
+
