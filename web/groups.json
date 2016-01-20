@@ -1,0 +1,26 @@
+[
+	{
+		"name" : "Kiew",
+		"color" : "#396592"
+	},
+	{
+		"name" : "Acre",
+		"color": "#84c45b"
+	},
+	{
+		"name" : "Damascus",
+		"color": "#0cb8dd"
+	},
+	{
+		"name" : "Berlin",
+		"color": "#ef87b2"
+	},
+	{
+		"name" : "Amman",
+		"color": "#737477"
+	},
+	{
+		"name" : "Beer Sheva",
+		"color": "#f36f21"
+	}
+]

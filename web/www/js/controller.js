@@ -2,8 +2,10 @@ define([
         'jquery',
         'marionette',
         'vent',
-        'views/ExplorationView'
-], function($, Marionette, Vent, ExplorationView){
+        'views/ExplorationView',
+        'views/HomeView',
+        'views/dialogs/AnnotateDialog'
+], function($, Marionette, Vent, ExplorationView, HomeView, AnnotateDialog){
 	
 	var Controller = Marionette.Controller.extend({
 		
@@ -18,6 +20,8 @@ define([
 					selector: "#modal-container"
 				}
 			});
+
+			Vent.on('open:attachDialog', this.openAttachDialog, this);
 		},
 		
 			
@@ -29,8 +33,14 @@ define([
 		},
 	
 		defaultRoute: function() {
-			alert('default');
+			this.app.containerRegion.show(new HomeView());
 		},
+
+		/* MODALS */
+
+		openAttachDialog: function(model) {
+			this.app.modalRegion.show(new AnnotateDialog({ model : model }));
+		}
 		
 	});
 	

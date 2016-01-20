@@ -16,7 +16,7 @@
     $app->get('/explorations/:id', 'getExploration');
     $app->put('/explorations/:id', 'saveExploration');
     $app->post('/explorations/', 'saveExploration');
-    $app->delete('/explorations/:id', 'deleteExploration');
+    //$app->delete('/explorations/:id', 'deleteExploration');
 
 
     //record routes
@@ -26,11 +26,16 @@
         listRecords($req); 
     });
     $app->delete('/records/:arg', 'deleteRecord');
-   
-    //upload record routes
-    $app->post('/records/', 'submitRecord');
-    $app->post('/records/upload/:id', 'uploadRecordFile');
+    $app->post('/records/', 'submitRecord');  //upload record data
+    $app->post('/records/upload/:id', 'uploadRecordFile'); //upload record files
 
+    //attachment routes
+    $app->get('/attachments/', function() use ($app) {
+        $req = $app->request->params('result_id');
+        listAttachments($req); 
+    });
+    $app->get('/attachments/:id', 'getAttachment');
+    $app->post('/attachments/', 'saveAttachment');
 
     $app->run();
 
@@ -45,7 +50,7 @@
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $db = null;
             _arrayToUtf8($result);
-            _convertJsonColumns($result,array('tasks','location'));
+            _convertJsonColumns($result,array('tasks','location','groups'));
             if (sizeof($result)<1)
                 _sendData();
             _sendData($result[0],200);
@@ -61,7 +66,7 @@
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $db = null;
             _arrayToUtf8($result);
-            _convertJsonColumns($result,array('tasks','location'));
+            _convertJsonColumns($result,array('tasks','location','groups'));
             _sendData(array("explorations" => $result));
         } catch(PDOException $e) {
             _sendData($e->getMessage(),404); 
@@ -128,7 +133,7 @@
     function getRecord($arg) {
         try {
             $db = getConnection();
-            $query = "SELECT * FROM ".DB_TABLE_RECORDS." WHERE records.id=:id";
+            $query = "SELECT * FROM ".DB_TABLE_RECORDS." WHERE id=:id";
             $stmt = $db->prepare($query);
             $stmt->execute(array('id' => $arg));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -156,7 +161,7 @@
                 
                 //secondly fetch results
                 $stmt = $db->prepare("
-                		SELECT results.*,explorer,tasks FROM ".DB_TABLE_RECORDS." AS records
+                		SELECT results.*,explorer,tasks,color FROM ".DB_TABLE_RECORDS." AS records
                 		RIGHT JOIN ".DB_TABLE_RESULTS." AS results ON records.id=results.record_id 
                 		WHERE records.exploration_id=:exploration_id
                 		ORDER BY explorer,time DESC");
@@ -231,15 +236,16 @@
 	            //check if record already exists, if not create it in the database
                 $db = getConnection();
                 $stmt = $db->prepare("REPLACE INTO ".DB_TABLE_RECORDS." 
-                    (id,exploration_id,explorer,tasks,time)
-                    VALUES (:id,:exploration_id,:explorer,:tasks,:time)");
+                    (id,exploration_id,explorer,tasks,time,color)
+                    VALUES (:id,:exploration_id,:explorer,:tasks,:time,:color)");
 
                 $insertData = array(
                     "id" => $record['id'],
                     "exploration_id" => $record['exploration_id'],
                     "explorer" => $record['explorer'],
                     "tasks" => json_encode($record['tasks']),
-                    "time" => $record['time']
+                    "time" => $record['time'],
+                    "color" => $record['color']
                 );
 
                 $stmt->execute($insertData);
@@ -334,6 +340,114 @@
         } catch (Exception $e) {
             _sendData($e->getMessage(),500);
         }
+    }
+
+
+    /* Attachment Methods */
+
+    function getAttachment($arg) {
+        try {
+            $db = getConnection();
+            $stmt = $db->prepare("SELECT * FROM ".DB_TABLE_ATTACHMENTS." WHERE id = :id");
+            $stmt->execute(array(':id' => $arg));
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $db = null;
+            _arrayToUtf8($result);
+            if (sizeof($result)<1)
+                _sendData();
+            _sendData($result[0],200);
+        } catch(PDOException $e) {
+            _sendData($e->getMessage(),500); 
+        }
+    }
+
+    function listAttachments($arg = null) {
+        try {
+            $db = getConnection();
+            $stmt = $db->prepare("SELECT * FROM ".DB_TABLE_ATTACHMENTS." WHERE result_id = :result_id");
+            $stmt->execute(array('result_id' => $arg));
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $db = null;
+            _arrayToUtf8($result);
+            _sendData(array("attachments" => $result));
+        } catch(PDOException $e) {
+            _sendData($e->getMessage(),404); 
+        }
+    }
+
+    function saveAttachment() {
+
+        $app = Slim::getInstance();
+        $body = $app->request->getBody();
+        
+        $data = (array) json_decode($body);
+
+        //create data object for file post
+        if (isset($_FILES['image'])) {
+            $data = array(
+                "result_id" => $_POST["result_id"],
+                "name" => $_POST['name'],
+                "text" => $_POST['text'],
+                "image" => $_FILES['image']['name']
+            );
+        }
+
+        try {
+            //insert into database
+            $db = getConnection();
+            $stmt = $db->prepare("INSERT INTO ".DB_TABLE_ATTACHMENTS." (result_id,name,text,image)
+                VALUES (:result_id,:name,:text,:image)");
+            $stmt->execute($data);
+
+            if (isset($_FILES['image'])) {
+                //get id of new inserted record
+                $id = $db->lastInsertId();
+
+                $file = $_FILES['image'];
+
+                $upload_dir = DIR_ATTACHMENT_FILES.'/'.$id;
+                //check if upload dir exists, else create it
+                if(!is_dir($upload_dir))  {
+                    mkdir($upload_dir,0755);
+                    chmod($upload_dir,0777);
+                }
+
+                //copy file
+                if (is_uploaded_file($file['tmp_name']))
+                    move_uploaded_file($file['tmp_name'], $upload_dir.'/'.$file['name']);
+            }
+
+            updateAttachmentCount($data["result_id"]);
+            
+            _sendData("data inserted",200,true);
+        } catch(Exception $e) {
+            //_saveToLog($e->getMessage());
+            _sendData($e->getMessage(),500); 
+        }
+    }
+
+    function updateAttachmentCount($resultId) {
+
+        try {
+            //get count
+            $db = getConnection();
+            $stmt = $db->prepare("SELECT COUNT(*) FROM ".DB_TABLE_ATTACHMENTS." WHERE result_id = :result_id");
+            $stmt->execute(array('result_id' => $resultId));
+            $count = $stmt->fetchColumn(); 
+            
+            //update result
+            $stmt = $db->prepare("UPDATE ".DB_TABLE_RESULTS." SET attachments=:count WHERE id=:result_id");
+            $stmt->execute(array(
+                'count' => $count,
+                'result_id' => $resultId
+            ));
+
+            $db = null;
+        } catch(PDOException $e) {
+            ;
+        }
+
+        return;
     }
 
     /* Helper Methods */

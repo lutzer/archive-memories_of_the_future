@@ -8,7 +8,11 @@ define([
 	ExplorationCollection = Backbone.Collection.extend({
 		model: ExplorationModel,
 		
-		urlRoot : Constants['web_service_url']+'explorations/',
+		url : Constants['web_service_url']+'explorations/',
+
+		parse: function(response, options) {
+			return response.explorations;
+		}
 	
 	});
 	

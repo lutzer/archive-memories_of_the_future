@@ -2,30 +2,29 @@ define([
 	'jquery',
 	'underscore',
 	'marionette',
+	'views/items/ResultListItemView',
 	'text!templates/resultTemplate.html'
-], function($, _, Marionette, template){
+], function($, _, Marionette, ResultListItemView, template){
 	
-	var ResultDialogView = Backbone.Marionette.ItemView.extend({
+	var ResultDialogView = Backbone.Marionette.LayoutView.extend({
 		
 		id: 'result',
 			
 		template: _.template(template),
-		
+
+		regions: {
+    		itemRegion: '#result-item-container'
+    	},
+
 		className: 'modal-dialog hidden transition',
-		
-		serializeData: function() {
-			var data = this.model.toJSON();
-			data.imagePath = this.model.getImagePath();
-			data.audioPath = this.model.getAudioPath();
-			data.task = this.model.getTask();
-		    return data;
-		},
 		
 		events: {
 			'click #closeButton' : 'onCloseButtonPressed'
 		},
 		
 		onRender: function() {
+
+			this.itemRegion.show(new ResultListItemView({model: this.model}))
 			
 			var self = this;
 			setTimeout(function() {

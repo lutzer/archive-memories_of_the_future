@@ -92,6 +92,22 @@ h3 {
 	webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);*/
 }
 
+.input-field label {
+	left:0;
+}
+
+.input.field textarea {
+    resize: none;
+}
+
+.btn {
+	background-color: #000;
+}
+
+.btn:hover {
+	background-color: #333;
+}
+
 
 /*
  * HELPERS
@@ -115,14 +131,15 @@ h3 {
 	text-align:center;
 }
 
+.text-align-right {
+	text-align: right;
+}
 
 /*
  * MODAL DIALOG
  */
 
 .modal-dialog {
-	/*-webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);*/
     webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1
@@ -139,6 +156,74 @@ h3 {
   	webkit-transform: scale(0.5);
     transform: scale(0.5);
     opacity: 0
+}
+
+.overlay-dialog-background {
+	position: fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index: 9998;
+	background-color: rgba(0,0,0,0.6);
+}
+
+.overlay-dialog {
+	position: fixed;
+	top:15%;
+	left:15%;
+	width: 70%;
+	height:70%;
+	background-color: #fff;
+	z-index: 9999;
+	padding:20px;
+	overflow: auto;
+	border-radius:2px;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.overlay-dialog h1 {
+	font-size: 180%;
+	margin-top:0px;
+	margin-bottom: 20px;
+	line-height:1;
+}
+
+.overlay-dialog .top-button {
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+
+.overlay-dialog .bottom-button {
+	position:absolute;
+	right:10px;
+	bottom:0px;
+}
+
+.overlay-dialog .scroll {
+	height:80%;
+	overflow:auto;
+}
+
+/*
+* HOME PAGE
+*/
+.homepage {
+	margin:100px;
+}
+
+.homepage ul {
+	font-size: 18pt;
+}
+
+.homepage li {
+	list-style-type: circle;
+}
+
+.homepage h1 {
+	font-size: 24pt;
 }
 
 /*
@@ -159,7 +244,7 @@ img.leaflet-tile {
 }
 
 .marker {
-	background-color: #9e9e9e;
+	background-color: #fff;
 	border-radius: 50%;
 	border:1px solid #000;
 	opacity: 1.0;
@@ -169,6 +254,7 @@ img.leaflet-tile {
 	margin:-10px 0px 0px -10px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 	webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	text-align: center;
 }
 
 .marker.focused {
@@ -181,60 +267,6 @@ img.leaflet-tile {
 }
 
 /*
- * BACKGROUND COLORS
- */
- 
-.color-0 {
-	background-color: #cebc3f;
-}
-
-.color-1 {
-	background-color: #A79C8E;
-}
-
-.color-2 {
-	background-color: #f7942c;
-}
-
-/*.color-0 {
-	background-color: #f44336;
-}
-
-.color-0.light {
-	background-color: #ffcdd2 ;
-}
-.color-1 {
-	background-color: #03a9f4 ;
-}
-.color-1.light {
-	background-color: #bbdefb ;
-}
-.color-2 {
-	background-color: #8bc34a ;
-}
-.color-2.light {
-	background-color: #dcedc8 ;
-}
-.color-3 {
-	background-color: #ffeb3b ;
-}
-.color-3.light {
-	background-color: #fff9c4 ;
-}
-.color-4 {
-	background-color: #795548 ;
-}
-.color-4.light {
-	background-color: #d7ccc8 ;
-}
-.color-5 {
-	background-color: #673ab7 ;
-}
-.color-5.light {
-	background-color: #d1c4e9 ;
-}*/
-
-/*
  * RESULT DIALOG STYLES
  */
 
@@ -242,10 +274,9 @@ img.leaflet-tile {
 	position:fixed;
 	top:0px;
 	left:0px;
-	min-width:300px;
-	width:30%;
+	width:330px;
 	z-index: 1000;
-	max-height:90%;
+	height:100%;
 	overflow: auto;
 	padding:10px;
 }
@@ -260,8 +291,7 @@ img.leaflet-tile {
 	position:fixed;
 	top:0px;
 	left:0px;
-	min-width:300px;
-	width:30%;
+	width:330px;
 	z-index: 1000;
 	height:100%;
 	overflow: auto;
@@ -275,6 +305,7 @@ img.leaflet-tile {
 }
 
 .result-item {
+	background-color: #fff;
 	margin-bottom:10px;
 	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 	webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
@@ -382,6 +413,47 @@ img.leaflet-tile {
 	font-size: 120%;
 
 }
+
+/* ATTACHMENT VIEW */
+
+#attachment-view {
+	position:fixed;
+	top:10px;
+	left:340px;
+	right:10px;
+	bottom:10px;
+	z-index: 1000;
+	overflow: auto;
+	background-color: #fff;
+	overflow: auto;
+	border-radius:2px;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	padding:20px;
+}
+
+#attachment-view h2 {
+	margin-bottom:20px;
+	font-size: 30px;
+}
+
+#attachment-view .top-button {
+	float:right;
+}
+
+#attachment-view .btn {
+	margin-bottom: 0;
+}
+
+.attachment-item img {
+	width:100%;
+}
+
+.attachment-item .author {
+	text-align:right;
+	font-style: italic;
+}
+
 
 .recordLink {
 	cursor: pointer;

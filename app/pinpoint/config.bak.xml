@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="de.drl.pinpoint2" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Narrating Intercultural Spaces</name>
+    <description>
+
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Design Research Lab UDK BERLIN
+    </author>
+    <content src="index.html" />
+
+    <access origin="http://127.0.0.1*"/>
+    <access origin="http://drl.lu-re.de" subdomains="true" />
+    <!--<access origin="http://pinpoint.community-infrastructuring.org"/>
+    <access origin="http://community-infrastructuring.org" subdomains="true" />
+    <access origin="http://farseer.de" subdomains="true" />-->
+
+    <preference name="Orientation" value="portrait" />
+     <platform name="android">
+        <icon src="res/icon.png" density="ldpi" />
+        <icon src="res/icon.png" density="mdpi" />
+        <icon src="res/icon.png" density="hdpi" />
+        <icon src="res/icon.png" density="xhdpi" />
+
+        <splash src="res/splash.9.png" density="port-hdpi"/>
+        <splash src="res/splash.9.png" density="port-ldpi"/>
+        <splash src="res/splash.9.png" density="port-mdpi"/>
+        <splash src="res/splash.9.png" density="port-xhdpi"/>
+     </platform>
+     <preference name="SplashScreenDelay" value="5000" />
+     <preference name="SplashScreen" value="screen" />
+</widget>

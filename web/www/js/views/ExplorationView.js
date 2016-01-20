@@ -2,15 +2,17 @@ define([
 	'jquery',
 	'underscore',
 	'marionette',
+	'vent',
 	'models/ExplorationModel',
 	'models/RecordCollection',
 	'models/ResultCollection',
 	'views/MapView',
 	'views/ResultDialogView',
 	'views/RecordView',
+	'views/AttachmentView',
 	'views/menus/ExplorationMenuView',
 	'text!templates/explorationTemplate.html'
-], function($, _, Marionette, ExplorationModel, RecordCollection, ResultCollection, MapView, ResultDialogView, RecordView, ExplorationMenuView, template){
+], function($, _, Marionette, Vent, ExplorationModel, RecordCollection, ResultCollection, MapView, ResultDialogView, RecordView,  AttachmentView, ExplorationMenuView, template){
 	
 	var ExplorationView = Backbone.Marionette.LayoutView.extend({
 		
@@ -51,11 +53,16 @@ define([
 					alert('Cannot connect to server');
 				}
 			});
+
+			this.listenTo(Vent,'open:attachmentView', function(model) {
+				self.attachmentRegion.show(new AttachmentView({ model : model }));
+			});
 		},
 		
 		regions: {
 			mapRegion : '#map-container',
-			dialogRegion: '#dialog-container'
+			dialogRegion: '#dialog-container',
+			attachmentRegion: '#attachment-container'
 		},
 		
 		template: _.template(template),

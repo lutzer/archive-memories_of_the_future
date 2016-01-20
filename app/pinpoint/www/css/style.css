@@ -79,6 +79,14 @@ h3 {
 	border-color: #fff !important;
 }
 
+.radio-input {
+	margin: 20px 0 20px 0;
+}
+
+.radio-input select {
+	color: #000;
+}
+
 #progressBar {
 	background-color: #ccc !important;
 }
@@ -333,6 +341,10 @@ h3 {
 	list-style-type: none;
 	padding:0px;
 	margin:0 0pt 10pt 0pt;
+}
+
+.list li {
+	width:100%;
 }
 
 .list-item {

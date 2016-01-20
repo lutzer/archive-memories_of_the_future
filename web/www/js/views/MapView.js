@@ -11,10 +11,11 @@ define([
 			
 			//create marker object so collection can add to
 			this.markers = new L.MarkerClusterGroup({
-				maxClusterRadius : 25,
+				maxClusterRadius : 40,
 				showCoverageOnHover: false,
 				spiderfyOnMaxZoom: true
 			});
+			//this.markers = new L.layerGroup();
 			
 			//remove Leaflet's L Object 
 			//Leaflet.noConflict();
@@ -49,11 +50,16 @@ define([
 			//setup geomarker options
 			this.geoLayerOptions = {
 				pointToLayer: function (feature, latlng) {
-					return L.marker(latlng, {icon : L.icon({ // style markers
-						iconUrl : 'images/marker-placeholder.png',
+					return L.marker(latlng, {icon : L.extendedDivIcon({ // style markers
+						iconSize: [feature.properties.size,feature.properties.size],
 						clickable: true,
 						className: feature.properties.className,
-						id: feature.properties.idName
+						id: feature.properties.idName,
+						style: { 
+							backgroundColor : feature.properties.color,
+							lineHeight: feature.properties.size+"px"
+						},
+						html: feature.properties.attachments
 					})});
 				},
 				onEachFeature: function(feature, layer) { // connect to event

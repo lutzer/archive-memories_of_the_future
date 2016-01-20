@@ -44,7 +44,11 @@ define([
 			
 			console.log(this.model);
 			record = new RecordModel();
-			record.setup(this.model,$('#name').val());
+
+			if (this.model.get('groups')) {
+				record.setup(this.model,null,this.$('#group-select').val());
+			} else
+				record.setup(this.model,$('#name').val());
 			
 			var database = Database.getInstance();
 			database.records.add(record);

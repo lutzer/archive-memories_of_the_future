@@ -1,4 +1,4 @@
-<?
+<?php
 
     require 'Slim/Middleware.php';
     require 'Slim/Middleware/HttpBasicAuth.php';

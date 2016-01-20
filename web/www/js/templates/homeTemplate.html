@@ -1,0 +1,8 @@
+<div class="homepage">
+<h1>Maps</h1>
+	<ul>
+		<% _.each(items, function(item) { %>
+		<li><a href="#exploration/<%= item.id %>"><%= item.name %></a></li>
+	    <% }); %>
+	</ul>
+</div>

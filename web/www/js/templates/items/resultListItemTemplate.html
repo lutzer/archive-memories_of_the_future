@@ -6,18 +6,18 @@
 <% } %>
 </div>
 <% if (audioPath) { %>
-	<div class="text color-<%= task_id %> light">
+	<div class="text light">
 		<audio src="<%= audioPath %>" controls>
 	</div>
 <% } %>
-<div class="text color-<%= task_id %> light">
+<div class="text light">
 	<h2><%= task.name %></h2>
 	<div class="right">
 		<%= explorer %>
 	</div>
 	<p><%= note %></p>
-	<div class="right">
-		<a class="waves-effect waves-circle waves-light button-round-light button-normal" id="annotateButton">
+	<div class="text-align-right">
+		<a class="waves-effect waves-circle waves-light button-round-light button-normal" id="attachButton">
 			<i class="mdi-file-attachment icon"></i>
 		</a>
 	</div>

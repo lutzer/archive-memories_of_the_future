@@ -24,8 +24,11 @@ define([
 				},
 				"properties": {
 					"id": self.get('id'),
-					"className": "marker color-"+self.get('task_id')+" "+self.get('id'),
-					"type": "marker"
+					"className": "marker "+self.get('id'),
+					"color": self.get('color'),
+					"attachments": self.get('attachments'),
+					"type": "marker",
+					"size": 24 + self.get('attachments') * 3
 				}					
 			};
 			return json;

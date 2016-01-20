@@ -31,19 +31,36 @@ define([
 		    return Backbone.Model.prototype.set.call(this, attributes, options);
 		},
 		
-		setup: function(exploration,name) {
+		setup: function(exploration,name,groupId) {
 			
 			var date = new Date();
 			
-			recordData = {
-				exploration_id : exploration.id,
-				exploration_name: exploration.get('name'),
-				briefing: exploration.get('briefing'),
-				description: exploration.get('description'),
-				tasks : exploration.get('tasks'),
-				explorer: name,
-				time: date.getTime()
-				
+			var recordData = {};
+			
+			if (name != null) {
+				// setup with name
+				recordData = {
+					exploration_id : exploration.id,
+					exploration_name: exploration.get('name'),
+					briefing: exploration.get('briefing'),
+					description: exploration.get('description'),
+					tasks : exploration.get('tasks'),
+					explorer: name,
+					time: date.getTime()
+				};
+			} else {
+				//setup with group
+				var groups = exploration.get('groups');
+				recordData = {
+					exploration_id : exploration.id,
+					exploration_name: exploration.get('name'),
+					briefing: exploration.get('briefing'),
+					description: exploration.get('description'),
+					tasks : exploration.get('tasks'),
+					explorer: groups[groupId].name,
+					color: groups[groupId].color,
+					time: date.getTime()
+				};
 			}
 			this.set(recordData);
 		},
