@@ -1,4 +1,4 @@
-# Pinpoint2
+# Memories of the Future
 
 ## Setup IDE
 
